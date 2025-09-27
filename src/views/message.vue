@@ -11,10 +11,10 @@
               <div class="h-10 w-10 items-center justify-center flex bg-gray-100 rounded-full font-bold">JC</div>
               <div class="flex text-start relative flex-1 flex-col">
                 <p class="text-black font-medium">John Codemon</p>
-                  <p class="text-[14px] line-clamp-1 pr-8">
-                    {{ messages.length ? messages[messages.length - 1].content : '' }}
-                  </p>
-                <div class="flex absolute bg-teal-500 text-white text-[12px] h-5 w-5 items-center justify-center right-3 rounded-full top-0">
+                <p class="text-[14px] line-clamp-1 break-words">
+                  {{ messages.length ? messages[messages.length - 1].content : '' }}
+                </p>
+                <div :class="messages.length === 0 ? 'hidden': 'flex'" class=" absolute bg-teal-500 text-white text-[12px] h-5 w-5 items-center justify-center right-3 rounded-full top-0">
                   {{ messages.length }}
                 </div>
               </div>
@@ -37,18 +37,29 @@
               <div :class="msg.sender_id === myUserId ? 'bg-teal-500 text-white' : 'bg-gray-200 text-black'"
                   class="relative pb-7 flex flex-col rounded-md p-2 max-w-[450px] min-w-[50px] w-fit">
                 
-                <p class="text-start">{{ msg.content }}</p>
+                <p class="text-start break-words">{{ msg.content }}</p>
                 <p class="text-[12px] absolute bottom-1 right-3">{{ new Date(msg.created_at).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: true}) }}</p>
               </div>
 
             </div>
+            <div class="flex mt-auto items-center pt-2 space-x-2">
+              <textarea
+                ref="messageInput"
+                v-model="newMessage"
+                rows="1"
+                class="flex-1 border rounded-md p-2 resize-none overflow-y-auto max-h-32 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                @input="$event.target.style.height = 'auto'; $event.target.style.height = $event.target.scrollHeight + 'px';"
+              ></textarea>
+              <button @click="sendMessage" class="bg-teal-500 w-[45px] h-[45px] rounded-full text-white px-4 py-2 border-none hover:border-none focus:border-none active:border-none hover:bg-teal-600 items-center justify-center flex-shrink-0">
+                <svg class="ml-[-6px] mb-[-4px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <!-- Paper plane -->
+                  <path d="M22 2L11 13"/>
+                  <path d="M22 2L15 22l-4-9-9-4L22 2z"/>
+                </svg>
 
-
-            <!-- Input -->
-            <div class="flex mt-auto pt-2">
-              <input v-model="newMessage" type="text" class="flex-1 border rounded-md p-2" placeholder="Type a message..."/>
-              <button @click="sendMessage" class="ml-2 bg-teal-500 text-white px-4 rounded-md">Send</button>
+              </button>
             </div>
+
           </div>
         </div>
       </div>
@@ -59,8 +70,10 @@
 <script>
 import Sidebar from '../components/navbar.vue';
 import Topbar from '../components/topbar.vue';
-import { onMounted, ref } from 'vue';
 import { io } from "socket.io-client";
+import { onMounted, ref, nextTick } from 'vue';
+
+const messageInput = ref(null);
 
 export default {
   components: {
@@ -71,11 +84,10 @@ export default {
     const isvisible = ref(false);
     const isvisible1 = ref(true);
 
-    // Chat state
-    const messages = ref([]);           // all messages in current conversation
-    const newMessage = ref('');         // new message input
-    const myUserId = 1;                 // your logged-in user id
-    const selectedUserId = 2;           // the user you are chatting with
+    const messages = ref([]);  
+    const newMessage = ref('');        
+    const myUserId = 1;                
+    const selectedUserId = 2;         
 
     let socket;
 
@@ -109,6 +121,11 @@ export default {
       });
 
       newMessage.value = '';
+
+      nextTick(() => {
+        if (messageInput.value) messageInput.value.style.height = 'auto';
+      });
+
     };
 
     // 🔹 Format "x mins ago" / "Yesterday"

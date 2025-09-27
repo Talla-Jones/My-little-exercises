@@ -37,7 +37,7 @@
         </svg>
         <div class="flex absolute rounded-full text-[12px] h-5 w-5 top-[-7px] right-[-7px] bg-red-600 text-white items-center justify-center">1</div>
       </div>
-      <div @click="$router.push('/people')" class="flex relative hover:bg-color1 hover:text-white p-2 rounded-md">
+      <div @click="$router.push('/communities')" class="flex relative hover:bg-color1 hover:text-white p-2 rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <!-- Center user (front) -->
           <circle cx="32" cy="20" r="8"/>

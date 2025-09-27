@@ -9,7 +9,20 @@
       </div>
     </div>
     <div class=" w-full flex-1 flex-col p-6">
-      <div class="flex hover:bg-color1 hover:text-white cursor-pointer px-2 py-[6px] items-center space-x-4 rounded-md">
+      <div @click="$router.push('/dashboard')" :class="[$route.path === '/dashboard' ? 'bg-color1 text-white' : 'bg-white text-black']"  class="flex hover:bg-color1 hover:text-white cursor-pointer px-2 py-[6px] items-center space-x-4 rounded-md">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Top row -->
+          <rect x="3" y="3" width="8" height="8" rx="1"/>
+          <rect x="13" y="3" width="8" height="8" rx="1"/>
+          
+          <!-- Bottom row -->
+          <rect x="3" y="13" width="8" height="8" rx="1"/>
+          <rect x="13" y="13" width="8" height="8" rx="1"/>
+        </svg>
+        <span>Dashboard</span>
+      </div>
+      <hr class="my-3">
+      <div  @click="$router.push('/messages')" :class="[$route.path === '/messages' ? 'bg-color1 text-white' : 'bg-white text-black']"  class="flex hover:bg-color1 hover:text-white cursor-pointer px-2 py-[6px] items-center space-x-4 rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 24 24" 
             width="20" height="20" 
@@ -24,7 +37,7 @@
         <span>Messages</span>
       </div>
       <hr class="my-3">
-      <div class="flex hover:bg-color1 hover:text-white cursor-pointer px-1 py-[6px] items-center space-x-4 rounded-md">
+      <div @click="$router.push('/notifications')" :class="[$route.path === '/notifications' ? 'bg-color1 text-white' : 'bg-white text-black']" class="flex hover:bg-color1 hover:text-white cursor-pointer px-1 py-[6px] items-center space-x-4 rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <!-- Bell body -->
           <path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/>
@@ -34,7 +47,7 @@
         <span>Notifications</span>
       </div>
       <hr class="my-3">
-      <div class="flex hover:bg-color1 hover:text-white cursor-pointer px-1 py-[6px] items-center space-x-4 rounded-md">
+      <div @click="$router.push('/profile')" :class="[$route.path === '/profile' ? 'bg-color1 text-white' : 'bg-white text-black']" class="flex hover:bg-color1 hover:text-white cursor-pointer px-1 py-[6px] items-center space-x-4 rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <!-- Head -->
           <circle cx="32" cy="20" r="12"/>
@@ -44,7 +57,7 @@
         <span >Profile</span>
       </div>
       <hr class="my-3">
-      <div class="flex hover:bg-color1 hover:text-white cursor-pointer px-2 py-[6px] items-center space-x-4 rounded-md">
+      <div @click="$router.push('/posts')" :class="[$route.path === '/posts' ? 'bg-color1 text-white' : 'bg-white text-black']" class="flex hover:bg-color1 hover:text-white cursor-pointer px-2 py-[6px] items-center space-x-4 rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <title>Post</title>
           <rect x="2.5" y="3" width="19" height="18" rx="1.5"/>
@@ -59,7 +72,7 @@
         <span >Posts</span>
       </div>
       <hr class="my-3">
-      <div class="flex hover:bg-color1 hover:text-white cursor-pointer px-1 py-[6px] items-center space-x-4 rounded-md">
+      <div @click="$router.push('/hods')" :class="[$route.path === '/hods' ? 'bg-color1 text-white' : 'bg-white text-black']" class="flex hover:bg-color1 hover:text-white cursor-pointer px-1 py-[6px] items-center space-x-4 rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <!-- Head -->
           <circle cx="32" cy="20" r="12"/>
@@ -69,7 +82,7 @@
         <span >HODs</span>
       </div>
       <hr class="my-3">
-      <div class="flex hover:bg-color1 hover:text-white cursor-pointer px-1 py-[6px] items-center space-x-4 rounded-md">
+      <div @click="$router.push('/communities')" :class="[$route.path === '/communities' ? 'bg-color1 text-white' : 'bg-white text-black']" class="flex hover:bg-color1 hover:text-white cursor-pointer px-1 py-[6px] items-center space-x-4 rounded-md">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="25" height="25" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <!-- Center user (front) -->
           <circle cx="32" cy="20" r="8"/>
